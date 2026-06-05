@@ -1,5 +1,7 @@
 package com.toshan.resume_analyzer;
 import com.toshan.resume_analyzer.service.GreetingService;
+
+import java.io.IOException;
 import java.util.List;
 import com.toshan.resume_analyzer.model.SkillAnalysisResponse;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,4 +54,12 @@ public class HelloController {
             file.getSize(),
             file.getContentType());
     }
+    @PostMapping("/read")
+    public String readFile(
+        @RequestParam("file") MultipartFile file) throws IOException {
+
+      return new String(file.getBytes());
+        }  
+   
+      
 }
