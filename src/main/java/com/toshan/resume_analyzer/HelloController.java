@@ -2,6 +2,12 @@ package com.toshan.resume_analyzer;
 import com.toshan.resume_analyzer.service.GreetingService;
 import java.util.List;
 import com.toshan.resume_analyzer.model.SkillAnalysisResponse;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.toshan.resume_analyzer.model.FileUploadResponse;
+import org.springframework.web.bind.annotation.RequestPart;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +30,7 @@ public class HelloController {
         return new SkillAnalysisResponse(
             skillList,
             skillList.size());
-}
+        }
 
     @GetMapping("/hello")
     public ApiResponse hello(@RequestParam(required = false) String name) {
@@ -32,5 +38,18 @@ public class HelloController {
         String message = greetingService.getGreeting(name);
 
         return new ApiResponse(message, true);
+    }
+    @GetMapping("/test")
+    public String test() {
+      return "Test endpoint working";
+    }
+    @PostMapping("/upload")
+    public FileUploadResponse uploadFile(
+        @RequestPart("file") MultipartFile file) {
+
+      return new FileUploadResponse(
+            file.getOriginalFilename(),
+            file.getSize(),
+            file.getContentType());
     }
 }
