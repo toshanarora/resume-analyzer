@@ -1,5 +1,6 @@
 package com.toshan.resume_analyzer;
 import com.toshan.resume_analyzer.service.GreetingService;
+import com.toshan.resume_analyzer.service.PdfService;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,11 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+    private final PdfService pdfService;
 
     private final GreetingService greetingService;
 
-    public HelloController(GreetingService greetingService) {
-        this.greetingService = greetingService;
+    public HelloController(
+        GreetingService greetingService,
+        PdfService pdfService) {
+
+    this.greetingService = greetingService;
+    this.pdfService = pdfService;
+
     }
     @GetMapping("/analyze")
     public SkillAnalysisResponse analyzeSkills(
@@ -54,12 +61,13 @@ public class HelloController {
             file.getSize(),
             file.getContentType());
     }
+   
     @PostMapping("/read")
-    public String readFile(
+    public String readPdf(
         @RequestParam("file") MultipartFile file) throws IOException {
 
-      return new String(file.getBytes());
-        }  
+       return pdfService.extractText(file);
+       }
    
       
 }
