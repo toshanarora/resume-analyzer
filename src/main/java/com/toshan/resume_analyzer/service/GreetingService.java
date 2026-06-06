@@ -1,6 +1,6 @@
 package com.toshan.resume_analyzer.service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,12 +17,37 @@ public class GreetingService {
         return "Hello " + name;
     }
 
-    public List<String> extractSkills(String skills) {
+    public List<String> extractSkills(String text) {
 
-        if (skills == null || skills.isBlank()) {
-            return List.of();
+        List<String> knownSkills = List.of(
+                "Java",
+                "Spring Boot",
+                "SQL",
+                "AWS",
+                "Docker",
+                "Git",
+                "Kafka",
+                "MongoDB",
+                "Hibernate",
+                "JUnit",
+                "Mockito",
+                "Spring Security",
+                "Microservices",
+                "Kubernetes"
+        );
+
+        List<String> foundSkills = new ArrayList<>();
+
+        if (text == null || text.isBlank()) {
+            return foundSkills;
         }
 
-        return Arrays.asList(skills.split(","));
+        for (String skill : knownSkills) {
+            if (text.toLowerCase().contains(skill.toLowerCase())) {
+                foundSkills.add(skill);
+            }
+        }
+
+        return foundSkills;
     }
 }

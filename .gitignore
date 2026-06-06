@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+# Gemini API key
+src/main/resources/application.properties

@@ -1,21 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Resume Analyzer</title>
+    <title>ResumeIQ: AI Resume Analyzer & Career Advisor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .analyze-btn {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .gap-btn {
+            background-color: #16a34a;
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Resume Analyzer</h1>
+<div class="container">
 
-    <form action="/read" method="post" enctype="multipart/form-data">
+    <h1>ResumeIQ</h1>
 
-        <input type="file" name="file">
+    <p class="subtitle">
+        AI Resume Analyzer & Career Advisor
+    </p>
 
-        <br><br>
+    <!-- Resume Analysis -->
+    <div class="card">
 
-        <button type="submit">Upload Resume</button>
+        <h2>📄 Career Discovery</h2>
 
-    </form>
+        <p>
+            Don't know what career path suits you?
+            Upload your resume and let AI analyze your profile,
+            strengths, weaknesses and suitable job roles.
+        </p>
+
+        <form action="/analyze-ai" method="post" enctype="multipart/form-data">
+
+            <input type="file" name="file" required>
+
+            <button class="analyze-btn" type="submit">
+                Analyze My Resume
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Career Gap Analysis -->
+    <div class="card">
+
+        <h2>🎯 Career Gap Analysis</h2>
+
+        <p>
+            Already have a target role in mind?
+            Upload your resume and compare it against your dream role.
+        </p>
+
+        <form action="/career-gap-ui" method="post" enctype="multipart/form-data">
+
+            <input type="file" name="file" required>
+
+            <input
+                type="text"
+                name="targetRole"
+                placeholder="Example: Senior Backend Engineer"
+                required>
+
+            <button class="gap-btn" type="submit">
+                Analyze Career Gap
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
 </body>
 </html>
