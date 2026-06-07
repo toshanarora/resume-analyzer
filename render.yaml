@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: resumeiq
+    runtime: java
+    buildCommand: ./mvnw clean package
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
