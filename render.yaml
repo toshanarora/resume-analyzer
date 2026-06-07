@@ -3,5 +3,8 @@ services:
     name: resumeiq
     env: docker
     envVars:
-      - key: GEMINI_API_KEY
+      - key: GEMINI_API_KEY_1
+        sync: false
+
+      - key: GEMINI_API_KEY_2
         sync: false
