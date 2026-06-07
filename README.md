@@ -4,6 +4,7 @@ AI-Powered Resume Analyzer and Career Advisor built using Spring Boot, Thymeleaf
 
 ResumeIQ helps users analyze their resumes, discover suitable career paths, identify skill gaps, and generate personalized learning roadmaps using Generative AI.
 
+🌐 Live Demo: https://resumeiq-ry6i.onrender.com
 ---
 
 ## ✨ Features
