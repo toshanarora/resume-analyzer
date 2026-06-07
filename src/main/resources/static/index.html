@@ -1,70 +1,147 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ResumeIQ: AI Resume Analyzer & Career Advisor</title>
+    <title>ResumeIQ - AI Resume Analyzer & Career Advisor</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 40px;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f6f8;
+            padding:40px;
         }
 
-        h1 {
-            text-align: center;
+        .container{
+            max-width:1000px;
+            margin:auto;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
+        h1{
+            text-align:center;
+            color:#2563eb;
+            margin-bottom:10px;
+            font-size:48px;
         }
 
-        .card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .subtitle{
+            text-align:center;
+            color:#64748b;
+            margin-bottom:30px;
+            font-size:18px;
         }
 
-        h2 {
-            margin-top: 0;
+        .features{
+            background:white;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:30px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .feature-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:15px;
+            margin-top:15px;
+        }
+
+        .feature-item{
+            background:#f8fafc;
+            padding:12px;
+            border-radius:8px;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            margin-bottom:25px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            margin-bottom:10px;
+        }
+
+        p{
+            line-height:1.6;
         }
 
         input[type="file"],
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            margin-bottom: 15px;
+        input[type="text"]{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            margin-bottom:15px;
+            border:1px solid #d1d5db;
+            border-radius:8px;
         }
 
-        button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
+        button{
+            padding:12px 20px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:bold;
         }
 
-        .analyze-btn {
-            background-color: #2563eb;
-            color: white;
+        .analyze-btn{
+            background:#2563eb;
+            color:white;
         }
 
-        .gap-btn {
-            background-color: #16a34a;
-            color: white;
+        .gap-btn{
+            background:#16a34a;
+            color:white;
         }
+
+        button:hover{
+            opacity:0.9;
+        }
+
+        #loadingOverlay{
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(255,255,255,0.95);
+            z-index:9999;
+            text-align:center;
+            padding-top:250px;
+        }
+
+        #loadingOverlay h2{
+            color:#2563eb;
+            margin-bottom:15px;
+        }
+
     </style>
 </head>
 
 <body>
+
+<div id="loadingOverlay">
+
+    <h2>🤖 ResumeIQ is analyzing your resume...</h2>
+
+    <p>
+        Extracting PDF...
+        <br><br>
+        Consulting AI...
+        <br><br>
+        Generating Report...
+    </p>
+
+</div>
 
 <div class="container">
 
@@ -74,23 +151,55 @@
         AI Resume Analyzer & Career Advisor
     </p>
 
-    <!-- Resume Analysis -->
+    <div class="features">
+
+        <h2>🚀 Features</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-item">
+                📄 Resume Analysis
+            </div>
+
+            <div class="feature-item">
+                🧭 Career Discovery
+            </div>
+
+            <div class="feature-item">
+                🎯 Career Gap Analysis
+            </div>
+
+            <div class="feature-item">
+                💼 AI Career Recommendations
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Career Discovery -->
+
     <div class="card">
 
-        <h2>📄 Career Discovery</h2>
+        <h2>🧭 Discover My Career Path</h2>
 
         <p>
-            Don't know what career path suits you?
-            Upload your resume and let AI analyze your profile,
-            strengths, weaknesses and suitable job roles.
+            Upload your resume and let AI identify your strengths,
+            weaknesses and the career paths that best match your profile.
         </p>
 
-        <form action="/analyze-ai" method="post" enctype="multipart/form-data">
+        <form action="/career-discovery-ui"
+              method="post"
+              enctype="multipart/form-data">
 
-            <input type="file" name="file" required>
+            <input
+                type="file"
+                name="file"
+                accept=".pdf"
+                required>
 
             <button class="analyze-btn" type="submit">
-                Analyze My Resume
+                Discover My Career Path
             </button>
 
         </form>
@@ -98,23 +207,30 @@
     </div>
 
     <!-- Career Gap Analysis -->
+
     <div class="card">
 
-        <h2>🎯 Career Gap Analysis</h2>
+        <h2>🎯 Analyze Career Gap</h2>
 
         <p>
-            Already have a target role in mind?
-            Upload your resume and compare it against your dream role.
+            Compare your current profile with a target role and receive
+            personalized improvement suggestions.
         </p>
 
-        <form action="/career-gap-ui" method="post" enctype="multipart/form-data">
+        <form action="/career-gap-ui"
+              method="post"
+              enctype="multipart/form-data">
 
-            <input type="file" name="file" required>
+            <input
+                type="file"
+                name="file"
+                accept=".pdf"
+                required>
 
             <input
                 type="text"
                 name="targetRole"
-                placeholder="Example: Senior Backend Engineer"
+                placeholder="Example: Java Backend Developer"
                 required>
 
             <button class="gap-btn" type="submit">
@@ -127,5 +243,20 @@
 
 </div>
 
+<script>
+
+document.querySelectorAll("form").forEach(form => {
+
+    form.addEventListener("submit", function() {
+
+        document.getElementById("loadingOverlay").style.display = "block";
+
+    });
+
+});
+
+</script>
+
 </body>
 </html>
+```

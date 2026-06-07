@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ResumeIQ Career Discovery</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        .container{
+            max-width:1100px;
+            margin:auto;
+        }
+
+        .card{
+            background:white;
+            border-radius:12px;
+            padding:25px;
+            margin-bottom:20px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:10px;
+            color:#2563eb;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#666;
+            margin-bottom:30px;
+        }
+
+        h2{
+            margin-bottom:15px;
+            color:#1e293b;
+        }
+
+        .badge{
+            display:inline-block;
+            background:#2563eb;
+            color:white;
+            padding:8px 14px;
+            border-radius:20px;
+            margin:5px;
+            font-size:14px;
+        }
+
+        .career-card{
+            background:#eef4ff;
+            border-left:5px solid #2563eb;
+            padding:15px;
+            margin-bottom:10px;
+            border-radius:8px;
+            font-weight:bold;
+        }
+
+        ul{
+            padding-left:20px;
+        }
+
+        li{
+            margin-bottom:8px;
+        }
+
+        .profile{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .profile-box{
+            background:#f8fafc;
+            padding:15px;
+            border-radius:8px;
+        }
+
+        .label{
+            font-weight:bold;
+            color:#475569;
+        }
+
+        .value{
+            margin-top:5px;
+            font-size:18px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🧭 Career Discovery Report</h1>
+
+    <p class="subtitle">
+        AI Powered Career Path Recommendation
+    </p>
+
+    <!-- Profile -->
+
+    <div class="card">
+
+        <h2>👤 Profile</h2>
+
+        <div class="profile">
+
+            <div class="profile-box">
+                <div class="label">Current Profession</div>
+                <div class="value"
+                     th:text="${report.profession}">
+                </div>
+            </div>
+
+            <div class="profile-box">
+                <div class="label">Experience</div>
+                <div class="value"
+                     th:text="${report.experience}">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Skills -->
+
+    <div class="card">
+
+        <h2>🛠 Skills Identified</h2>
+
+        <span class="badge"
+              th:each="skill : ${report.skills}"
+              th:text="${skill}">
+        </span>
+
+    </div>
+
+    <!-- Strengths -->
+
+    <div class="card">
+
+        <h2>💪 Strengths</h2>
+
+        <ul>
+            <li th:each="item : ${report.strengths}"
+                th:text="${item}">
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Weaknesses -->
+
+    <div class="card">
+
+        <h2>⚠ Areas To Improve</h2>
+
+        <ul>
+            <li th:each="item : ${report.weaknesses}"
+                th:text="${item}">
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Recommended Careers -->
+
+    <div class="card">
+
+        <h2>🎯 Recommended Career Paths</h2>
+
+        <div class="career-card"
+             th:each="role : ${report.suggestedRoles}"
+             th:text="${role}">
+        </div>
+
+    </div>
+
+    <!-- Certifications -->
+
+    <div class="card">
+
+        <h2>📜 Certifications</h2>
+
+        <ul>
+            <li th:each="cert : ${report.certifications}"
+                th:text="${cert}">
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Projects -->
+
+    <div class="card">
+
+        <h2>🚀 Projects</h2>
+
+        <ul>
+            <li th:each="project : ${report.projects}"
+                th:text="${project}">
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="card">
+
+        <h2>📝 AI Career Summary</h2>
+
+        <p th:text="${report.summary}"></p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

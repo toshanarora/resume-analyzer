@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.toshan.resume_analyzer.model.CareerGapResponse;
+import com.toshan.resume_analyzer.model.ResumeAnalysisResponse;
 import com.toshan.resume_analyzer.service.AIAnalysisService;
 import com.toshan.resume_analyzer.service.PdfService;
 
@@ -41,4 +42,18 @@ public class WebController {
 
         return "result";
     }
+    @PostMapping("/career-discovery-ui")
+    public String analyzeCareerDiscoveryUI(
+          @RequestParam("file") MultipartFile file,
+          Model model) throws Exception {
+
+        String text = pdfService.extractText(file);
+
+        ResumeAnalysisResponse report =
+            aiAnalysisService.analyzeResume(text);
+
+        model.addAttribute("report", report);
+
+        return "career-discovery";
+}
 }
