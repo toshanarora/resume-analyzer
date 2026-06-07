@@ -17,7 +17,7 @@ import com.toshan.resume_analyzer.model.ResumeAnalysisResponse;
 @Service
 public class AIAnalysisService {
 
-````
+
 @Value("${gemini.api.key1}")
 private String apiKey1;
 
@@ -215,6 +215,6 @@ public CareerGapResponse analyzeCareerGap(
             CareerGapResponse.class
     );
 }
-````
+
 
 }
